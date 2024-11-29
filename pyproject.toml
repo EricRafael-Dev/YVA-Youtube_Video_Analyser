@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "resume-yt-videos-project"
+version = "0.1.0"
+description = ""
+authors = ["Eric Rafael <rafaelpsec@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytube = "^15.0.0"
+whisper = "^1.1.10"
+pytubefix = "^8.6.0"
+ffmpeg = "^1.4"
+ffmpeg-python = "^0.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
