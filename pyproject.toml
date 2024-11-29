@@ -8,10 +8,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 pytube = "^15.0.0"
-whisper = "^1.1.10"
 pytubefix = "^8.6.0"
-ffmpeg = "^1.4"
-ffmpeg-python = "^0.2.0"
+openai = "^1.55.3"
+python-dotenv = "^1.0.1"
+setuptools-rust = "^1.10.2"
 
 
 [build-system]

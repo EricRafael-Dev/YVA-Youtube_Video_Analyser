@@ -1,11 +1,11 @@
 from pytubefix import YouTube
 import subprocess
-
+import whisper
 """
     Convert a video file MP4 to MP3 using ffmpeg
 """
-
-yt = YouTube('https://www.youtube.com/shorts/7fTHD07Q9Pw')
+filename = "transcript.mp3"
+yt = YouTube('https://youtu.be/V1PNrhV9qjA?si=vE_ClB3X61J8s6Bl')
 
 stream = yt.streams[0].url
 
@@ -30,6 +30,11 @@ def convert_video_to_mp3(input, output):
     except FileNotFoundError:
         print("FFmpeg isn't installed or isn't at PATH.")
 
-# Exemplo de uso
-convert_video_to_mp3(stream, "audio.mp3")
- 
+# Calling the func
+convert_video_to_mp3(stream, filename)
+
+
+model = whisper.load_model("tiny")
+audio = whisper.load_audio(file="transcript.mp3")
+transcript = model.transcribe('transcript.mp3')
+print(transcript["text"])
