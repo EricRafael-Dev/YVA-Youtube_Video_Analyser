@@ -12,6 +12,7 @@ python-dotenv = "^1.0.1"
 tqdm = "^4.67.1"
 numpy = "2.0"
 pytubefix = "^8.7.0"
+groq = "^0.13.0"
 
 
 [build-system]
