@@ -54,13 +54,8 @@ def convert_video_to_mp3(input, output):
             output
         ]
 
-        command_whisper_install = [
-            "pip", "install", "openai-whisper"
-        ]
-
         # Execute the command
         subprocess.run(command, check=True)
-        subprocess.run(command_whisper_install, check=True)
         print(f"Conversion completed: {output}")
 
         model = whisper.load_model("base")
