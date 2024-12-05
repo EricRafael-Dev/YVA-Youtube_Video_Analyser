@@ -1,12 +1,17 @@
 import pytubefix
 import subprocess
 import pytubefix.exceptions
-import whisper
 import streamlit as st
 from groq import Groq
 import os
 from dotenv import load_dotenv
 
+command_whisper_install = [
+            "pip", "install", "openai-whisper"
+        ]
+subprocess.run(command_whisper_install, check=True)
+
+import whisper
     #Convert a video file MP4 to MP3 using ffmpeg
 
 
