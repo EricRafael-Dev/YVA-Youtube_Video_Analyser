@@ -13,7 +13,6 @@ tqdm = "^4.67.1"
 numpy = "2.0"
 pytubefix = "^8.7.0"
 groq = "^0.13.0"
-openai-whisper = "^2.1"
 
 
 [build-system]
