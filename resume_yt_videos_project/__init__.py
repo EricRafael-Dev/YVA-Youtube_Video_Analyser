@@ -1,40 +1,62 @@
-from pytubefix import YouTube
+import pytubefix
 import subprocess
+import pytubefix.exceptions
 import whisper
-"""
-    Convert a video file MP4 to MP3 using ffmpeg
-"""
-filename = "transcript.mp3"
-yt = YouTube('https://youtu.be/V1PNrhV9qjA?si=vE_ClB3X61J8s6Bl')
+import streamlit as st
+import os
 
-stream = yt.streams[0].url
+
+    #Convert a video file MP4 to MP3 using ffmpeg
+
+
+def go(input=""):
+
+    #Taking a URL video to convert
+
+    try:
+        yt = pytubefix.YouTube(input)
+    
+        filename = yt.title.replace(" ","_")+".mp3"
+        stream = yt.streams[0].url
+
+        st.text(yt.title)
+        convert_video_to_mp3(stream, filename) 
+
+    except pytubefix.exceptions.RegexMatchError:
+        st.warning("Put a YouTube Link!")
+
+    except TypeError:
+        st.warning("Put a YouTube Link!")
+    
+
 
 def convert_video_to_mp3(input, output):
 
     try:
         # Comand FFmpeg
         command = [
-            "PATH/ffmpeg", "-i", input, 
+            "resume_yt_videos_project/PATH/ffmpeg", "-i", input, 
             "-vn", "-ar", "44100", 
             "-ac", "2", "-b:a", "192k", 
             output
         ]
+        print()
         
         # Execute the command
         subprocess.run(command, check=True)
         print(f"Conversion completed: {output}")
 
+        model = whisper.load_model("base")
+        result = model.transcribe(output)
+        st.text(result["text"])
+
     except subprocess.CalledProcessError as e:
         print("Error converting file:", e)
 
     except FileNotFoundError:
-        print("FFmpeg isn't installed or isn't at PATH.")
+        print("FFmpeg isn't installed or isn't at PATH." + os.listdir())
 
-# Calling the func
-convert_video_to_mp3(stream, filename)
+# Calling the func    
 
-
-model = whisper.load_model("tiny")
-audio = whisper.load_audio(file="transcript.mp3")
-transcript = model.transcribe('transcript.mp3')
-print(transcript["text"])
+input = st.text_input("Cole o link aqui: ")
+go(input)

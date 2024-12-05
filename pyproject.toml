@@ -7,11 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pytube = "^15.0.0"
-pytubefix = "^8.6.0"
-openai = "^1.55.3"
+streamlit = "^1.40.1"
 python-dotenv = "^1.0.1"
-setuptools-rust = "^1.10.2"
+tqdm = "^4.67.1"
+numpy = "2.0"
+pytubefix = "^8.7.0"
 
 
 [build-system]
